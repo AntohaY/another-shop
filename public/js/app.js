@@ -2099,7 +2099,7 @@ __webpack_require__.r(__webpack_exports__);
       var address = this.address;
       var product_id = this.product.id;
       var quantity = this.quantity;
-      axios.post('api/orders/', {
+      axios.post('/api/orders', {
         address: address,
         quantity: quantity,
         product_id: product_id
@@ -2917,7 +2917,7 @@ __webpack_require__.r(__webpack_exports__);
   beforeMount: function beforeMount() {
     var _this = this;
 
-    axios.get('/api/products/').then(function (response) {
+    axios.get('/api/products').then(function (response) {
       return _this.products = response.data;
     });
   },
@@ -2962,7 +2962,7 @@ __webpack_require__.r(__webpack_exports__);
       var description = product.description;
       var image = product.image;
       var category_name = product.category_name;
-      axios.post("/api/products/", {
+      axios.post("/api/products", {
         name: name,
         category_name: category_name,
         description: description,
@@ -56035,8 +56035,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/ysbm/www/another-shop/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/ysbm/www/another-shop/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/ysbm/www/shop/another-shop/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/ysbm/www/shop/another-shop/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

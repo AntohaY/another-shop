@@ -42,7 +42,7 @@
         },
         components: {Modal},
         beforeMount() {
-            axios.get('/api/products/').then(response => this.products = response.data)
+            axios.get('/api/products').then(response => this.products = response.data)
         },
         methods: {
             newProduct() {
@@ -78,7 +78,7 @@
                 let image = product.image
                 let category_name = product.category_name
 
-                axios.post("/api/products/", {name, category_name, description ,units, price,image})
+                axios.post("/api/products", {name, category_name, description ,units, price,image})
                     .then(response => this.products.push(product))
             }
         }

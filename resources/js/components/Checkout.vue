@@ -77,7 +77,7 @@
                 let product_id = this.product.id
                 let quantity = this.quantity
 
-                axios.post('api/orders/', {address, quantity, product_id})
+                axios.post('/api/orders', {address, quantity, product_id})
                     .then(response => this.$router.push('/confirmation'))
             },
             checkUnits(e){
