@@ -2802,13 +2802,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['product'],
   data: function data() {
@@ -2871,6 +2864,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductModal */ "./resources/js/components/admin/ProductModal.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -2972,6 +2969,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         return _this3.products.push(product);
       });
+    },
+    deleteProduct: function deleteProduct(product) {
+      axios.delete("/api/products/".concat(product.id));
     }
   }
 });
@@ -40530,6 +40530,19 @@ var render = function() {
                     }
                   },
                   [_vm._v(_vm._s(product.category_name))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        _vm.deleteProduct(product)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Delete product\n            ")]
                 )
               ]
             )

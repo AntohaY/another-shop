@@ -38,6 +38,7 @@ class ProductController extends Controller
         ]);
     }
 
+
     public function show(Product $product)
     {
         return response()->json($product,200);
@@ -85,6 +86,8 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $status = $product->delete();
+
+        $product->delete();
 
         return response()->json([
             'status' => $status,

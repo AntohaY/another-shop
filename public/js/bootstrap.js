@@ -36442,7 +36442,7 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/ysbm/www/another-shop/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /home/ysbm/www/shop/another-shop/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
 
 
 /***/ })

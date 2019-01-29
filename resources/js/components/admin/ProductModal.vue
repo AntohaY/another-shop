@@ -26,13 +26,6 @@
                         </button>
                     </slot>
                 </div>
-                <!--<div class="modal-footer">-->
-                    <!--<slot name="footer">-->
-                        <!--<button class="modal-default-button" @click="uploadFile">-->
-                            <!--Finish-->
-                        <!--</button>-->
-                    <!--</slot>-->
-                <!--</div>-->
             </div>
         </div>
     </div>
@@ -133,7 +126,8 @@
                 } else {
                     this.$emit('close', this.product)
                 }
-            }
+            },
+
         }
     }
 </script>

@@ -19,16 +19,20 @@
                 <td v-model="product.price">{{product.price}}</td>
                 <td v-model="product.description">{{product.description}}</td>
                 <td v-model="product.category_name">{{product.category_name}}</td>
+                <button class="btn btn-danger" @click="deleteProduct(product)">
+                    Delete product
+                </button>
             </tr>
             </tbody>
         </table>
         <modal @close="endEditing" :product="editingItem" v-show="editingItem != null"></modal>
         <modal @close="addProduct"  :product="addingProduct" v-show="addingProduct != null"></modal>
         <br>
+
         <button class="btn btn-primary" @click="newProduct">Add New Product</button>
     </div>
 </template>
-х
+
 <script>
     import Modal from './ProductModal'
 
@@ -80,6 +84,9 @@
 
                 axios.post("/api/products", {name, category_name, description ,units, price,image})
                     .then(response => this.products.push(product))
+            },
+            deleteProduct(product){
+                axios.delete(`/api/products/${product.id}`)
             }
         }
     }
