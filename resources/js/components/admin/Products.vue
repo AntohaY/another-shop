@@ -19,7 +19,7 @@
                 <td v-model="product.price">{{product.price}}</td>
                 <td v-model="product.description">{{product.description}}</td>
                 <td v-model="product.category_name">{{product.category_name}}</td>
-                <button class="btn btn-danger" @click="deleteProduct(product)">
+                <button class="btn btn-danger btn-sm" @click="deleteProduct(product)">
                     Delete product
                 </button>
             </tr>

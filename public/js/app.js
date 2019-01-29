@@ -40535,7 +40535,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-danger",
+                    staticClass: "btn btn-danger btn-sm",
                     on: {
                       click: function($event) {
                         _vm.deleteProduct(product)
