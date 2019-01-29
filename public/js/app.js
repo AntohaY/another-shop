@@ -2177,6 +2177,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2575,7 +2576,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     deleteCategory: function deleteCategory(category) {
-      axios.delete("/api/categories/".concat(category.id));
+      var _this4 = this;
+
+      axios.delete("/api/categories/".concat(category.id)).then(function (response) {
+        return _this4.categories = response.data.data;
+      });
     }
   }
 });
@@ -7367,7 +7372,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.small-text[data-v-f2b6376c] {\n    font-size: 14px;\n}\n.product-box[data-v-f2b6376c] {\n    border: 1px solid #cccccc;\n    padding: 10px 15px;\n}\n.hero-section[data-v-f2b6376c] {\n    height: 30vh;\n    background: #52ab3d;\n    align-items: center;\n    margin-bottom: 20px;\n    margin-top: -20px;\n}\n.title[data-v-f2b6376c] {\n    font-size: 60px;\n    color: #ffffff;\n}\n", ""]);
+exports.push([module.i, "\ndiv.version[data-v-f2b6376c] {\n    font-size: 8px;\n    color: #ffffff;\n}\n.small-text[data-v-f2b6376c] {\n    font-size: 14px;\n}\n.product-box[data-v-f2b6376c] {\n    border: 1px solid #cccccc;\n    padding: 10px 15px;\n}\n.hero-section[data-v-f2b6376c] {\n    height: 30vh;\n    background: #52ab3d;\n    align-items: center;\n    margin-bottom: 20px;\n    margin-top: -20px;\n}\n.title[data-v-f2b6376c] {\n    font-size: 60px;\n    color: #ffffff;\n}\n", ""]);
 
 // exports
 
@@ -39543,7 +39548,11 @@ var staticRenderFns = [
         staticClass:
           "container-fluid hero-section d-flex align-content-center justify-content-center flex-wrap ml-auto"
       },
-      [_c("h2", { staticClass: "title" }, [_vm._v("Welcome!")])]
+      [
+        _c("h2", { staticClass: "title" }, [_vm._v("Welcome!")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "version" }, [_vm._v("Version 0.8")])
+      ]
     )
   }
 ]

@@ -62,6 +62,7 @@ class CategoryController extends Controller
         $status = $category->delete();
 
         return response()->json([
+            'data' => Category::all(),
             'status' => $status,
             'message' => $status ? 'Category Deleted!' : 'Error Deleting Category'
         ]);

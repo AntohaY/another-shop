@@ -2,6 +2,7 @@
     <div>
         <div class="container-fluid hero-section d-flex align-content-center justify-content-center flex-wrap ml-auto">
             <h2 class="title">Welcome!</h2>
+            <div class="version">Version 0.8</div>
         </div>
         <div class="container">
             <div class="row">
@@ -35,6 +36,10 @@
 </script>
 
 <style scoped>
+    div.version {
+        font-size: 8px;
+        color: #ffffff;
+    }
     .small-text {
         font-size: 14px;
     }

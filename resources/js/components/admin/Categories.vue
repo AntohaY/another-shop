@@ -56,7 +56,7 @@
                     .then(response => this.categories.push(category))
             },
             deleteCategory(category){
-                axios.delete(`/api/categories/${category.id}`)
+                axios.delete(`/api/categories/${category.id}`).then(response => this.categories = response.data.data)
             }
         }
     }
