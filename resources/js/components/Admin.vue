@@ -37,7 +37,7 @@
             }
         },
         components: {
-            Main, Users, Products, Orders
+            Main, Users, Products, Orders, Categories
         },
         beforeMount() {
             this.setComponent(this.$route.params.page)

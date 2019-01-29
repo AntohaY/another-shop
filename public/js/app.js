@@ -1808,7 +1808,8 @@ __webpack_require__.r(__webpack_exports__);
     Main: _components_admin_Main__WEBPACK_IMPORTED_MODULE_0__["default"],
     Users: _components_admin_Users__WEBPACK_IMPORTED_MODULE_1__["default"],
     Products: _components_admin_Products__WEBPACK_IMPORTED_MODULE_2__["default"],
-    Orders: _components_admin_Orders__WEBPACK_IMPORTED_MODULE_3__["default"]
+    Orders: _components_admin_Orders__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Categories: _components_admin_Categories__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   beforeMount: function beforeMount() {
     this.setComponent(this.$route.params.page);
@@ -2689,7 +2690,7 @@ __webpack_require__.r(__webpack_exports__);
   beforeMount: function beforeMount() {
     var _this = this;
 
-    axios.get('/api/orders/').then(function (response) {
+    window.axios.get('/api/orders/').then(function (response) {
       return _this.orders = response.data;
     });
   },
@@ -2919,7 +2920,7 @@ __webpack_require__.r(__webpack_exports__);
   beforeMount: function beforeMount() {
     var _this = this;
 
-    axios.get('/api/products').then(function (response) {
+    window.axios.get('/api/products').then(function (response) {
       return _this.products = response.data;
     });
   },
@@ -2972,11 +2973,15 @@ __webpack_require__.r(__webpack_exports__);
         price: price,
         image: image
       }).then(function (response) {
-        return _this3.products.push(product);
+        return _this3.products = response.data.data;
       });
     },
     deleteProduct: function deleteProduct(product) {
-      axios.delete("/api/products/".concat(product.id));
+      var _this4 = this;
+
+      axios.delete("/api/products/".concat(product.id)).then(function (response) {
+        return _this4.products = response.data.data;
+      });
     }
   }
 });

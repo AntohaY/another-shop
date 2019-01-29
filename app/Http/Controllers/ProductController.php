@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
+use App\Order;
 
 class ProductController extends Controller
 {
@@ -33,7 +34,7 @@ class ProductController extends Controller
 
         return response()->json([
             'status' => (bool) $product,
-            'data'   => $product,
+            'data' => Product::all(),
             'message' => $product ? 'Product Created!' : 'Error Creating Product'
         ]);
     }
@@ -88,8 +89,10 @@ class ProductController extends Controller
         $status = $product->delete();
 
         $product->delete();
+        Order::where('product_id', $product->id)->delete();
 
         return response()->json([
+            'data' => Product::all(),
             'status' => $status,
             'message' => $status ? 'Product Deleted!' : 'Error Deleting Product'
         ]);

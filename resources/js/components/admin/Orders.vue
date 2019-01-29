@@ -35,7 +35,7 @@
             }
         },
         beforeMount(){
-            axios.get('/api/orders/').then(response => this.orders = response.data)
+            window.axios.get('/api/orders/').then(response => this.orders = response.data)
         },
         methods: {
             deliver(index) {

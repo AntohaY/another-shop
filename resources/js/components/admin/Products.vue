@@ -46,7 +46,7 @@
         },
         components: {Modal},
         beforeMount() {
-            axios.get('/api/products').then(response => this.products = response.data)
+            window.axios.get('/api/products').then(response => this.products = response.data)
         },
         methods: {
             newProduct() {
@@ -71,6 +71,7 @@
 
                 axios.put(`/api/products/${product.id}`, {name,category_name,description, units, price})
                     .then(response => this.products[index] = product)
+
             },
             addProduct(product) {
                 this.addingProduct = null
@@ -83,10 +84,11 @@
                 let category_name = product.category_name
 
                 axios.post("/api/products", {name, category_name, description ,units, price,image})
-                    .then(response => this.products.push(product))
+                    .then(response => this.products = response.data.data)
             },
             deleteProduct(product){
                 axios.delete(`/api/products/${product.id}`)
+                    .then(response => this.products = response.data.data)
             }
         }
     }
