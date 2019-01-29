@@ -9,9 +9,11 @@
             </thead>
             <tbody>
             <tr v-for="(category,index) in categories" @key="index" >
-                <!--@dblclick="editingItem = category"-->
                 <td>{{index+1}}</td>
                 <td v-html="category.category_name"></td>
+                <button class="btn btn-danger btn-sm" @click="deleteCategory(category)">
+                    Delete category
+                </button>
             </tr>
             </tbody>
         </table>
@@ -52,6 +54,9 @@
 
                 axios.post("/api/categories/", {category_name})
                     .then(response => this.categories.push(category))
+            },
+            deleteCategory(category){
+                axios.delete(`/api/categories/${category.id}`)
             }
         }
     }

@@ -2527,6 +2527,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2570,6 +2572,9 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         return _this3.categories.push(category);
       });
+    },
+    deleteCategory: function deleteCategory(category) {
+      axios.delete("/api/categories/".concat(category.id));
     }
   }
 });
@@ -40076,7 +40081,20 @@ var render = function() {
             _vm._v(" "),
             _c("td", {
               domProps: { innerHTML: _vm._s(category.category_name) }
-            })
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger btn-sm",
+                on: {
+                  click: function($event) {
+                    _vm.deleteCategory(category)
+                  }
+                }
+              },
+              [_vm._v("\n                Delete category\n            ")]
+            )
           ])
         }),
         0
