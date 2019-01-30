@@ -40302,7 +40302,12 @@ var render = function() {
   return _c("div", { staticClass: "modal-mask" }, [
     _c("div", { staticClass: "modal-wrapper" }, [
       _c("div", { staticClass: "modal-container" }, [
-        _c("div", { staticClass: "modal-header" }, [_vm._t("header")], 2),
+        _c(
+          "div",
+          { staticClass: "modal-header" },
+          [_vm._t("header", [_vm._v("All fields must be filled")])],
+          2
+        ),
         _vm._v(" "),
         _c(
           "div",

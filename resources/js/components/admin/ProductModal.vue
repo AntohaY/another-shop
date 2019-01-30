@@ -4,7 +4,7 @@
         <div class="modal-wrapper">
             <div class="modal-container">
                 <div class="modal-header">
-                    <slot name="header" v-html="data.name"></slot>
+                    <slot name="header" v-html="data.name">All fields must be filled</slot>
                 </div>
                 <div class="modal-body mx-3">
                     <slot name="body">
@@ -115,6 +115,7 @@
                 this.attachment = event.target.files[0];
             },
             uploadFile(event) {
+
                 if (this.attachment != null) {
                     var formData = new FormData();
                     formData.append("image", this.attachment)
