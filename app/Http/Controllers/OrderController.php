@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -33,6 +34,11 @@ class OrderController extends Controller
             'quantity' => $request->quantity,
             'address' => $request->address
         ]);
+
+
+        DB::table('products')
+            ->where('id',$request-> product_id)
+            ->decrement('units', $request -> quantity);
 
         return response()->json([
             'status' => (bool) $order,
