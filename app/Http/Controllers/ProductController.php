@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Order;
+use Illuminate\Validation\Validator;
 
 class ProductController extends Controller
 {
@@ -16,20 +17,38 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $product = Product::create([
-            'name' => $request->name,
-            'category_name' => $request->category_name,
-            'description' => $request->description,
-            'units' => $request->units,
-            'price' => $request->price,
-            'image' => $request->image
+        try{
+        $this->validate($request,$rules = [
+            'name' => 'required|max:255',
+            'category_name' => 'required',
+            'description' => 'required',
+            'units' => 'required',
+            'price' => 'required',
+        ],$messages = [
+            'name.required' => 'Please add name to create product',
+            'category_name.required' => 'Please add category name to create product',
+            'description.required' => 'Please add description to create product',
+            'units.required' => 'Please add units to create product',
+            'price.required' => 'Please add price to create product'
         ]);
-
+        $product = Product::create([
+                'name' => $request->name,
+                'category_name' => $request->category_name,
+                'description' => $request->description,
+                'units' => $request->units,
+                'price' => $request->price,
+                'image' => $request->image
+        ]);
+        //Create a category if it didn't exist before
         $category = Category::where('category_name', '=', $request->category_name)->first();
-        if ($category === null) {
-            Category::create([
-               'category_name' => $request->category_name
-            ]);
+            if ($category === null) {
+                Category::create([
+                    'category_name' => $request->category_name
+                ]);
+            }
+
+        }catch(\Exception $e){
+            return response()->json($e->getMessage(), 500);
         }
 
         return response()->json([

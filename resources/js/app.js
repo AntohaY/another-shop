@@ -1,10 +1,27 @@
 require('./bootstrap');
 
-//window.Vue = require('vue');
-
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-Vue.use(VueRouter); //important
+import VueNotifications from 'vue-notifications';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
+
+
+function toast ({title, message, type, timeout, cb}) {
+    if (type === VueNotifications.types.warn) type = 'warning'
+    return toastr[type](message, title, {timeOut: timeout})
+}
+
+const options = {
+    success: toast,
+    error: toast,
+    info: toast,
+    warn: toast
+};
+
+Vue.use(VueNotifications, options)
+Vue.use(VueRouter);
+
 
 ///Importing views from "components"
 

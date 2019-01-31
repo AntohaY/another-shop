@@ -35,7 +35,7 @@
 
 <script>
     import Modal from './ProductModal'
-
+    import VueNotifications from 'vue-notifications'
     export default {
         data() {
             return {
@@ -70,7 +70,16 @@
                 let category_name = product.category_name
 
                 axios.put(`/api/products/${product.id}`, {name,category_name,description, units, price})
-                    .then(response => this.products[index] = product)
+                    .then(response => {
+                        this.products[index] = product
+                        if(response.data.message == 'Product Updated!'){
+                            this.showInfoMsg({message: response.data.message})
+                        }
+                        if(response.data.message == 'Error Updating Product'){
+                            this.showErrorMsg({message: response.data.message})
+                        }
+
+                    })
 
             },
             addProduct(product) {
@@ -84,11 +93,51 @@
                 let category_name = product.category_name
 
                 axios.post("/api/products", {name, category_name, description ,units, price,image})
-                    .then(response => this.products = response.data.data)
+                    .then(response => {
+                        this.products = response.data.data
+                        if(response.data.message == 'Product Created!'){
+                            this.showSuccessMsg({message: response.data.message})
+                        }
+                        if(response.data.message == 'Error Creating Product'){
+                            this.showErrorMsg({message: response.data.message})
+                        }
+                    } )
+
             },
             deleteProduct(product){
                 axios.delete(`/api/products/${product.id}`)
-                    .then(response => this.products = response.data.data)
+                    .then(response => {
+                        this.products = response.data.data
+                        if(response.data.message == 'Product Deleted!'){
+                            this.showWarnMsg({message: response.data.message})
+                        }
+                        if(response.data.message == 'Error Deleting Product'){
+                            this.showErrorMsg({message: response.data.message})
+                        }
+
+                    })
+            }
+        },
+        notifications: {
+            showSuccessMsg: {
+                type: VueNotifications.types.success,
+                title: 'Hello there',
+                message: 'That\'s the success!'
+            },
+            showInfoMsg: {
+                type: VueNotifications.types.info,
+                title: 'Hey you',
+                message: 'Here is some info for you'
+            },
+            showWarnMsg: {
+                type: VueNotifications.types.warn,
+                title: 'Wow, man',
+                message: 'That\'s the kind of warning'
+            },
+            showErrorMsg: {
+                type: VueNotifications.types.error,
+                title: 'Wow-wow',
+                message: 'That\'s the error'
             }
         }
     }
