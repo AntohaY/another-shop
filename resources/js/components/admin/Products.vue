@@ -112,7 +112,7 @@
                             this.showWarnMsg({message: response.data.message})
                         }
                         if(response.data.message == 'Error Deleting Product'){
-                            this.showErrorMsg({message: response.data.message})
+                            this.showErrorMsg({message: response.data.message + ' ,' + response.data.validation})
                         }
 
                     })

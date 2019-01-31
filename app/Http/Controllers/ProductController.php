@@ -54,7 +54,8 @@ class ProductController extends Controller
         return response()->json([
             'status' => (bool) $product,
             'data' => Product::all(),
-            'message' => $product ? 'Product Created!' : 'Error Creating Product'
+            'message' => $product ? 'Product Created!' : 'Error Creating Product',
+            'validation' => $messages
         ]);
     }
 
