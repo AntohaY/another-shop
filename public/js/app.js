@@ -2508,6 +2508,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_notifications__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-notifications */ "./node_modules/vue-notifications/dist/vue-notifications.es5.js");
+/* harmony import */ var vue_notifications__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_notifications__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2531,6 +2533,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2579,8 +2582,34 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios.delete("/api/categories/".concat(category.id)).then(function (response) {
-        return _this4.categories = response.data.data;
+        _this4.categories = response.data.data;
+
+        _this4.showInfoMsg({
+          message: response.data.message
+        });
       });
+    }
+  },
+  notifications: {
+    showSuccessMsg: {
+      type: vue_notifications__WEBPACK_IMPORTED_MODULE_0___default.a.types.success,
+      title: 'Hello there',
+      message: 'That\'s the success!'
+    },
+    showInfoMsg: {
+      type: vue_notifications__WEBPACK_IMPORTED_MODULE_0___default.a.types.info,
+      title: 'Hey you',
+      message: 'Here is some info for you'
+    },
+    showWarnMsg: {
+      type: vue_notifications__WEBPACK_IMPORTED_MODULE_0___default.a.types.warn,
+      title: 'Wow, man',
+      message: 'That\'s the kind of warning'
+    },
+    showErrorMsg: {
+      type: vue_notifications__WEBPACK_IMPORTED_MODULE_0___default.a.types.error,
+      title: 'Wow-wow',
+      message: 'That\'s the error'
     }
   }
 });
