@@ -40145,7 +40145,7 @@ var staticRenderFns = [
       [
         _c("h2", { staticClass: "title" }, [_vm._v("Welcome!")]),
         _vm._v(" "),
-        _c("div", { staticClass: "version" }, [_vm._v("Version 0.8")])
+        _c("div", { staticClass: "version" }, [_vm._v("Version 0.9")])
       ]
     )
   }
