@@ -2050,6 +2050,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pid'],
   data: function data() {
@@ -2057,7 +2059,8 @@ __webpack_require__.r(__webpack_exports__);
       address: "",
       quantity: 1,
       isLoggedIn: null,
-      product: []
+      product: [],
+      isAvailable: false
     };
   },
   mounted: function mounted() {
@@ -2067,7 +2070,11 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get("/api/products/".concat(this.pid)).then(function (response) {
-      return _this.product = response.data;
+      _this.product = response.data;
+
+      if (_this.product.units > 0) {
+        _this.isAvailable = true;
+      }
     });
 
     if (localStorage.getItem('another-shop.jwt') != null) {
@@ -3053,7 +3060,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (response.data.message == 'Error Deleting Product') {
           _this4.showErrorMsg({
-            message: response.data.message
+            message: response.data.message + ' ,' + response.data.validation
           });
         }
       });
@@ -40008,16 +40015,20 @@ var render = function() {
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
-                _vm.isLoggedIn
-                  ? _c(
-                      "button",
-                      {
-                        staticClass:
-                          "col-md-4 btn btn-sm btn-success float-right",
-                        on: { click: _vm.placeOrder }
-                      },
-                      [_vm._v("Continue")]
-                    )
+                _vm.isAvailable
+                  ? _c("div", [
+                      _vm.isLoggedIn
+                        ? _c(
+                            "button",
+                            {
+                              staticClass:
+                                "col-md-4 btn btn-sm btn-success float-right",
+                              on: { click: _vm.placeOrder }
+                            },
+                            [_vm._v("Continue")]
+                          )
+                        : _vm._e()
+                    ])
                   : _vm._e()
               ])
             : _vm._e()
@@ -40174,7 +40185,7 @@ var staticRenderFns = [
       [
         _c("h2", { staticClass: "title" }, [_vm._v("Welcome!")]),
         _vm._v(" "),
-        _c("div", { staticClass: "version" }, [_vm._v("Version 0.9")])
+        _c("div", { staticClass: "version" }, [_vm._v("Version 0.9.4")])
       ]
     )
   }

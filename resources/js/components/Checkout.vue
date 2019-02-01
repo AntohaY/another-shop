@@ -26,7 +26,9 @@
                             </div>
                         </div>
                         <br>
-                        <button class="col-md-4 btn btn-sm btn-success float-right" v-if="isLoggedIn" @click="placeOrder">Continue</button>
+                        <div v-if="isAvailable">
+                            <button class="col-md-4 btn btn-sm btn-success float-right" v-if="isLoggedIn" @click="placeOrder">Continue</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,14 +50,22 @@
                 address : "",
                 quantity : 1,
                 isLoggedIn : null,
-                product : []
+                product : [],
+                isAvailable : false
             }
         },
         mounted() {
             this.isLoggedIn = localStorage.getItem('another-shop.jwt') != null
+
         },
         beforeMount() {
-            axios.get(`/api/products/${this.pid}`).then(response => this.product = response.data)
+
+            axios.get(`/api/products/${this.pid}`).then(response => {
+                this.product = response.data
+                if(this.product.units > 0){
+                    this.isAvailable = true;
+                }
+            })
 
             if (localStorage.getItem('another-shop.jwt') != null) {
                 this.user = JSON.parse(localStorage.getItem('another-shop.user'))
