@@ -69,6 +69,7 @@ class OrderController extends Controller
         $status = $order->delete();
 
         return response()->json([
+            'data' => Order::all(),
             'status' => $status,
             'message' => $status ? 'Order Deleted!' : 'Error Deleting Order'
         ]);

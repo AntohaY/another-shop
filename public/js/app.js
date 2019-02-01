@@ -2693,6 +2693,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_notifications__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-notifications */ "./node_modules/vue-notifications/dist/vue-notifications.es5.js");
+/* harmony import */ var vue_notifications__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_notifications__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2722,6 +2724,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2731,7 +2737,7 @@ __webpack_require__.r(__webpack_exports__);
   beforeMount: function beforeMount() {
     var _this = this;
 
-    window.axios.get('/api/orders/').then(function (response) {
+    axios.get('/api/orders/').then(function (response) {
       return _this.orders = response.data;
     });
   },
@@ -2745,6 +2751,39 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.$forceUpdate();
       });
+    },
+    deleteOrder: function deleteOrder(order) {
+      var _this3 = this;
+
+      axios.delete("/api/orders/".concat(order.id)).then(function (response) {
+        _this3.orders = response.data.data;
+
+        _this3.showInfoMsg({
+          message: response.data.message
+        });
+      });
+    }
+  },
+  notifications: {
+    showSuccessMsg: {
+      type: vue_notifications__WEBPACK_IMPORTED_MODULE_0___default.a.types.success,
+      title: 'Hello there',
+      message: 'That\'s the success!'
+    },
+    showInfoMsg: {
+      type: vue_notifications__WEBPACK_IMPORTED_MODULE_0___default.a.types.info,
+      title: 'Hey you',
+      message: 'Here is some info for you'
+    },
+    showWarnMsg: {
+      type: vue_notifications__WEBPACK_IMPORTED_MODULE_0___default.a.types.warn,
+      title: 'Wow, man',
+      message: 'That\'s the kind of warning'
+    },
+    showErrorMsg: {
+      type: vue_notifications__WEBPACK_IMPORTED_MODULE_0___default.a.types.error,
+      title: 'Wow-wow',
+      message: 'That\'s the error'
     }
   }
 });
@@ -40880,7 +40919,22 @@ var render = function() {
                     [_vm._v("Deliver")]
                   )
                 ])
-              : _vm._e()
+              : _vm._e(),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger btn-sm",
+                  on: {
+                    click: function($event) {
+                      _vm.deleteOrder(order)
+                    }
+                  }
+                },
+                [_vm._v("\n                Delete order\n            ")]
+              )
+            ])
           ])
         }),
         0
